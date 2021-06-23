@@ -22,7 +22,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     },
  *     itemOperations={
  *          "get",
- *          "put",
+ *          "put"={
+ *              "validation_groups"={"Default"}
+ *          },
  *     },
  *     normalizationContext={"groups"={"user:read"}},
  *     denormalizationContext={"groups"={"user:write"}},
@@ -67,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     /**
-     * @Groups("user:write")
+     * @Groups({"user:write"})
      * @SerializedName("password")
      * @Assert\NotBlank(groups={"create"})
      */
